@@ -19,6 +19,8 @@ A command-line Todo application built in Python, designed as a progressive learn
   - `pyproject.toml` for project configuration  
   - Unit testing  
   - `argparse` for command-line interfaces
+  - And other tools/modules...
+- GitHub Actions
 
 ---
 
@@ -88,3 +90,17 @@ uv pip install -e .
 
 This project is licensed under the MIT License.
 See the [LICENSE](/LICENSE) file for more information.
+
+
+---
+
+## 🙌 Contributions Welcome
+
+Contributions are not only welcome – they’re encouraged! Whether you’re a beginner looking to learn or an experienced developer with suggestions, ideas, or improvements, you’re invited to participate.
+
+Here’s how you can contribute:
+
+- 🐛 Report bugs — Found something that doesn’t work as expected? Open an issue!
+- ✨ Suggest features — Got an idea to make the tool more useful? Share it in the discussions or issues.
+- 🧹 Improve the code — Clean up logic, refactor modules, or enhance test coverage.
+- 📝 Enhance documentation — Clear, friendly documentation helps everyone.
