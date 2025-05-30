@@ -8,7 +8,6 @@ This roadmap outlines upcoming features and improvements planned for the Todo CL
 
 - Core commands: `add`, `list`, `complete`, `delete`, `clear`
 - Data persistence via JSON
-- Docker usage support
 - Test suite with `pytest`
 - CLI distribution via `pyproject.toml`
 - TypedDict for task structure
@@ -19,9 +18,10 @@ This roadmap outlines upcoming features and improvements planned for the Todo CL
 
 ## 🔜 In Progress / Next Steps
 
-- [ ] Welcome message on launch
-- [ ] Improve test coverage with `TypedDict`-aware assertions
-- [ ] Add uninstall instructions to README
+- [x] Welcome message on launch
+- [x] Add uninstall instructions to README
+- [x] Improve test coverage with `TypedDict`-aware assertions
+- [ ] Docker usage support
 
 ---
 

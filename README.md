@@ -83,6 +83,13 @@ uv pip install -e .
 ]
 ```
 
+## ❌ Uninstallation
+
+To uninstall the CLI tool:
+
+```bash
+uv pip uninstall todo-cli
+```
 
 ---
 

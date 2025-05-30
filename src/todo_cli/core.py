@@ -1,12 +1,30 @@
+# ----------------------------------------
+# 📝 Todo CLI Core Module
+# This module contains the core logic for the Todo CLI application.
+# It handles task management including creation, listing, updating, and deletion.
+# It uses a JSON file to persist tasks across sessions.
+# ----------------------------------------
+
 import json
 import os
-from typing import List, Dict, cast
+from typing import List, TypedDict
 
+# ----------------------------------------
+# 📦 TypedDict for tasks
+# ----------------------------------------
+
+class TaskDict(TypedDict):
+    id: int
+    text: str
+    done: bool
+
+Task = TaskDict
+
+# ----------------------------------------
+# 📁 Data file
+# ----------------------------------------
 # File where tasks will be stored
 DATA_FILE = "todo_data.json"
-
-# Define a type alias for better readability
-Task = Dict[str, object]
 
 # ---------------------------
 # 🔄 File operations
@@ -45,8 +63,9 @@ def add_task(text: str) -> Task:
     - Sets the 'done' field to False by default.
     """
     tasks = load_tasks()
-    last_id = cast(int, tasks[-1]["id"]) if tasks else 0
+    last_id = tasks[-1]["id"] if tasks else 0
     new_id = last_id + 1
+    # Create the new task with the next ID
 
     task: Task = {
         "id": new_id,
