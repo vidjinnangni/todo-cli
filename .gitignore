@@ -1,0 +1,65 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# === Virtual Environment ===
+.venv/
+env/
+venv/
+
+# === Editor & OS files ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.bak
+*.tmp
+
+# === Jupyter / IPython (if used later) ===
+.ipynb_checkpoints/
+*.ipynb
+
+# === Logs & Reports ===
+*.log
+*.out
+*.err
+coverage.*
+htmlcov/
+.tox/
+.nox/
+.cache/
+pytest_cache/
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# === UV ===
+uv.lock
+
+# === Test output ===
+test-results/
+
+# === Project metadata ===
+.python-version
+
+# === Misc ===
+*.sqlite
+*.db
+.env
+.env.*
+*.secret
+*.token
+
+# == Exclude task data file (auto-generated at runtime) ==
+todo_data.json
