@@ -6,6 +6,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Tests](https://github.com/vidjinnangni/todo-cli/actions/workflows/test.yaml/badge.svg)
 
 ---
 
@@ -66,8 +67,15 @@ cd todo-cli
 Set up the environment using uv:
 
 ```bash
-uv venv
-uv pip install -e .
+uv sync
+```
+
+(Optional) Activate the virtual environment manually:
+
+(macOS and Linux)
+
+```bash
+source .venv/bin/activate
 ```
 
 ## 📁 Task Storage
@@ -83,12 +91,43 @@ uv pip install -e .
 ]
 ```
 
-## ❌ Uninstallation
+## 🚀 Usage
 
-To uninstall the CLI tool:
+Run the CLI tool without activating the environment:
 
 ```bash
-uv pip uninstall todo-cli
+uv run todo add "Buy milk"
+uv run todo list
+```
+
+Or activate the environment and use `todo` directly:
+
+```bash
+source .venv/bin/activate
+todo add "Buy milk"
+```
+
+📚 Learn how the CLI is implemented internally → [CLI Architecture](docs/cli_explanation.md)
+
+## 🧪 Running Tests
+
+First, install all dependencies:
+
+```bash
+uv sync --extra dev
+```
+
+Then run the tests:
+
+```bash
+uv run pytest
+```
+
+Or:
+
+```bash
+source .venv/bin/activate
+pytest
 ```
 
 ---
