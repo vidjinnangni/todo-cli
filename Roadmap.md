@@ -19,7 +19,6 @@ This roadmap outlines upcoming features and improvements planned for the Todo CL
 ## 🔜 In Progress / Next Steps
 
 - [x] Welcome message on launch
-- [x] Add uninstall instructions to README
 - [x] Improve test coverage with `TypedDict`-aware assertions
 - [ ] Docker usage support
 
