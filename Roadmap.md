@@ -11,7 +11,7 @@ This roadmap outlines upcoming features and improvements planned for the Todo CL
 - Test suite with `pytest`
 - CLI distribution via `pyproject.toml`
 - TypedDict for task structure
-- Initial CI setup (Gitea)
+- Initial CI setup (GitHub)
 - Installation and usage docs
 
 ---
