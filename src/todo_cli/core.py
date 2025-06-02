@@ -7,18 +7,24 @@
 
 import json
 import os
-from typing import List, TypedDict
+from typing import List, Literal, TypedDict
 
 # ----------------------------------------
-# 📦 TypedDict for tasks
+# 📦 TypedDict for tasks with priority
 # ----------------------------------------
+
+Priority = Literal["low", "medium", "high"]
 
 class TaskDict(TypedDict):
     id: int
     text: str
     done: bool
+    priority: Priority
 
 Task = TaskDict
+
+# Allowed priority values
+VALID_PRIORITIES: tuple[Priority, ...] = ("low", "medium", "high")
 
 # ----------------------------------------
 # 📁 Data file
@@ -56,21 +62,26 @@ def save_tasks(tasks: List[Task]) -> None:
 # ➕ Task creation
 # ---------------------------
 
-def add_task(text: str) -> Task:
+def add_task(text: str, priority: Priority = "medium") -> Task:
     """
     Create a new task and save it.
     - Automatically assigns an ID based on the last task.
     - Sets the 'done' field to False by default.
     """
+    if priority not in VALID_PRIORITIES:
+        raise ValueError(f"Invalid priority: {priority}. Must be one of {VALID_PRIORITIES}.")
+        
+    # Load existing tasks to determine the next ID
     tasks = load_tasks()
     last_id = tasks[-1]["id"] if tasks else 0
     new_id = last_id + 1
-    # Create the new task with the next ID
 
+    # Create the new task with the next ID
     task: Task = {
         "id": new_id,
         "text": text,
-        "done": False
+        "done": False,
+        "priority": priority
     }
 
     tasks.append(task)

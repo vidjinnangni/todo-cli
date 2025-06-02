@@ -12,12 +12,12 @@ A command-line Todo application built in Python, designed as a progressive learn
 
 ## 📚 Learning Objectives
 
-- Learn Python through hands-on practice  
-- Apply a clear and professional project methodology  
-- Deepen understanding of core concepts (modules, functions, data structures, etc.)  
-- Get introduced to modern tools in the Python ecosystem:  
-  - `uv` for dependency management  
-  - `pyproject.toml` for project configuration  
+- Learn Python through hands-on practice
+- Apply a clear and professional project methodology
+- Deepen understanding of core concepts (modules, functions, data structures, etc.)
+- Get introduced to modern tools in the Python ecosystem:
+  - `uv` for dependency management
+  - `pyproject.toml` for project configuration
   - Unit testing  
   - `argparse` for command-line interfaces
   - And other tools/modules...
@@ -27,12 +27,13 @@ A command-line Todo application built in Python, designed as a progressive learn
 
 ## 🚀 Project Status
 
-- ✅ Git repository initialized  
-- ✅ Python environment managed with [UV](https://github.com/astral-sh/uv)  
-- ✅ Project structure scaffolded  
-- ✅ Core logic implemented (adding, listing, filtering, completing, deleting tasks)  
-- ✅ Fully tested with `pytest`  
-- ✅ Continuous Integration (CI) set up via GitHub Actions
+- ✅ Git repository initialized
+- ✅ Python environment managed with [UV](https://github.com/astral-sh/uv)
+- ✅ Core logic implemented (add, list, complete, delete, clear)
+- ✅ Priority filtering and sorting
+- ✅ Fully tested with `pytest`
+- ✅ Continuous Integration (CI) set up 
+- ✅ CLI welcome screen and helpful feedback  
 
 ---
 
@@ -86,8 +87,18 @@ source .venv/bin/activate
 
 ```json
 [
-  { "id": 1, "text": "Buy milk", "done": false },
-  { "id": 2, "text": "Write documentation", "done": true }
+  {
+    "id": 1,
+    "text": "Buy milk",
+    "done": false,
+    "priority": "medium"
+  },
+  {
+    "id": 2,
+    "text": "Write documentation",
+    "done": true,
+    "priority": "high"
+  }
 ]
 ```
 
@@ -96,7 +107,7 @@ source .venv/bin/activate
 Run the CLI tool without activating the environment:
 
 ```bash
-uv run todo add "Buy milk"
+uv run todo add "Buy milk" --priority high
 uv run todo list
 ```
 

@@ -11,16 +11,18 @@ This roadmap outlines upcoming features and improvements planned for the Todo CL
 - Test suite with `pytest`
 - CLI distribution via `pyproject.toml`
 - TypedDict for task structure
-- Initial CI setup (GitHub)
+- Initial CI setup
 - Installation and usage docs
+- Welcome message on launch
+- TypedDict-aware tests
+- Task priority support (`--priority`, `--sort priority`)
 
 ---
 
 ## 🔜 In Progress / Next Steps
 
-- [x] Welcome message on launch
-- [x] Improve test coverage with `TypedDict`-aware assertions
-- [ ] Docker usage support
+- [ ] Improved CLI output (UX polish)
+- [ ] Add changelog and versioning system
 
 ---
 
@@ -28,9 +30,9 @@ This roadmap outlines upcoming features and improvements planned for the Todo CL
 
 ### ✅ Task Organization & Priority
 
-- [ ] Add support for priority: `high`, `medium`, `low`
-- [ ] Sort tasks by priority (`--sort priority`)
-- [ ] Filter tasks by priority (`--priority high`)
+- [x] Add support for priority: `high`, `medium`, `low`
+- [x] Sort tasks by priority (`--sort priority`)
+- [x] Filter tasks by priority (`--priority high`)
 
 ### 📅 Dates & Reminders
 
@@ -93,4 +95,5 @@ This roadmap outlines upcoming features and improvements planned for the Todo CL
 
 ## 🙌 Contributions Welcome
 
-Feel free to open issues or contribute to any roadmap item. This roadmap is open and evolving based on feedback and needs.
+Feel free to open issues or contribute to any roadmap item.  
+This roadmap is open and evolving based on feedback and needs.

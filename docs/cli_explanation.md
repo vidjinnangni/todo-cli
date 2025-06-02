@@ -28,13 +28,15 @@ This module defines the command-line interface for the Todo CLI app using Python
 
 ## 📦 Available Commands
 
-| Command              | Syntax                            | Description                                  |
-|----------------------|------------------------------------|----------------------------------------------|
-| `add`                | `todo add "task content"`          | Adds a new task                              |
-| `list`               | `todo list [--done]`               | Lists all tasks (or only completed if `--done`) |
-| `complete`           | `todo complete <id>`               | Marks a task as completed                    |
-| `delete`             | `todo delete <id>`                 | Deletes a task by ID                         |
-| `clear`              | `todo clear`                       | Removes all tasks                            |
+## 📦 Available Commands
+
+| Command             | Syntax                                                           | Description                                     |
+|---------------------|------------------------------------------------------------------|-------------------------------------------------|
+| `add`               | `todo add "Task content" [--priority low|medium|high]`     | Add a new task with optional priority           |
+| `list`              | `todo list [--done|--undone] [--priority LEVEL] [--sort priority]`| List tasks with optional filters                |
+| `complete`          | `todo complete <id>`                                             | Mark a task as completed                        |
+| `delete`            | `todo delete <id>`                                               | Delete a task by ID                             |
+| `clear`             | `todo clear`                                                     | Delete all tasks                                |
 
 You can also run help for each subcommand:
 
@@ -48,10 +50,15 @@ todo list --help
 ## ✅ Examples
 
 ```bash
-todo add "Read a book"
+todo add "Buy groceries"
+todo add "Pay bills" --priority high
+
 todo list
-todo complete 1
+todo list --priority high
+todo list --sort priority
 todo list --done
+
+todo complete 1
 todo delete 1
 todo clear
 ```
@@ -69,8 +76,6 @@ Then, try some commands using uv run:
 ```bash
 uv run todo add "Test the CLI"
 uv run todo list
-uv run todo complete 1
-uv run todo delete 1
 ```
 
 Or with environment activation:
@@ -85,6 +90,6 @@ todo list
 - All commands are handled through argparse subparsers.
 - Each subcommand maps cleanly to logic defined in core.py.
 - New commands can be added easily by repeating the add_parser pattern.
-- The main() function acts as the dispatch layer, keeping your CLI modular and maintainable.
+- The main() function acts as the dispatch layer, keeping CLI modular and maintainable.
 
-➡️ This design cleanly separates user interface from business logic, making your code easy to test and extend.
+➡️ This design makes the CLI clean, extensible, and aligned with best practices.

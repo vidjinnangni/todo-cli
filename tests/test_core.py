@@ -33,18 +33,29 @@ def cleanup_test_file():
 # -------------------------------
 def test_add_task_creates_new_task():
     task: TaskDict = core.add_task("Write unit tests")
-    assert task == {"id": 1, "text": "Write unit tests", "done": False}
+    assert task == {
+        "id": 1,
+        "text": "Write unit tests",
+        "done": False,
+        "priority": "medium"
+    }
+
+def test_add_task_with_custom_priority():
+    task: TaskDict = core.add_task("Urgent fix", priority="high")
+    assert task["priority"] == "high"
 
 # -------------------------------
 # 📄 Test: list_tasks()
 # -------------------------------
 def test_list_tasks_returns_all_added_tasks():
     core.add_task("Task 1")
-    core.add_task("Task 2")
+    core.add_task("Task 2", priority="low")
     tasks: List[TaskDict] = core.list_tasks()
     assert len(tasks) == 2
     assert tasks[0]["text"] == "Task 1"
+    assert tasks[0]["priority"] == "medium"
     assert tasks[1]["text"] == "Task 2"
+    assert tasks[1]["priority"] == "low"
 
 # -------------------------------
 # ✅ Test: complete_task()

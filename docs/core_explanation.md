@@ -10,22 +10,23 @@ All core operations like adding, listing, marking, and clearing tasks are define
 
 ```json
 [
-  { "id": 1, "text": "Buy milk", "done": false }
+  { "id": 1, "text": "Buy milk", "done": false, "priority": "medium" }
 ]
 ```
 
 ## Task Type
+Each task is defined as a TypedDict:
 
-A task is represented as:
-
-```json
+```python
 {
-  "id": int,
-  "text": str,
-  "done": bool
+class TaskDict(TypedDict):
+    id: int
+    text: str
+    done: bool
+    priority: Literal["low", "medium", "high"]
 }
 ```
-The type alias Task = Dict[str, object] is used in core.py for readability.
+The default priority for new tasks is "medium".
 
 
 ## 🧩 Function Summary
@@ -37,6 +38,7 @@ The type alias Task = Dict[str, object] is used in core.py for readability.
 | `add_task(text)`      | Create and add a new task                        |
 | `list_tasks()`        | Return all existing tasks                        |
 | `complete_task(id)`   | Mark a task as completed by its ID               |
+| `delete_task(id)`     | Delete a task by its ID                          |
 | `clear_tasks()`       | Delete all tasks from the list                   |
 
 ## 🗂️ File Organization (`core.py`)

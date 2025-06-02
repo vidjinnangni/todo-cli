@@ -1,6 +1,6 @@
 [project]
 name = "todo-cli"
-version = "0.1.1"
+version = "0.1.2"
 description = "A simple command-line todo application"
 authors = [{ name = "vidjinnangni", email = "gregory.thoto@gmail.com" }]
 readme = "README.md"
