@@ -16,13 +16,13 @@ This module defines the command-line interface for the Todo CLI app using Python
 |--------------------------------------------|---------------------------------------------------------------------------|
 | `import argparse`                          | Standard library to handle command-line arguments                         |
 | `from . import core`                       | Imports the task logic from `core.py`                                     |
-| `argparse.ArgumentParser(...)`             | Initializes the main parser|
+| `argparse.ArgumentParser(...)`             | Initializes the main parser                                               |
 | `subparsers = parser.add_subparsers(...)`  | Allows for multiple subcommands (add, list, etc.)                         |
 | `add_parser = subparsers.add_parser(...)`  | Defines the `add` command                                                 |
 | `add_parser.add_argument(...)`             | Adds a required task text argument                                        |
-| `args = parser.parse_args()`              | Parses user input from the command line                                   |
-| `if args.command == "add":`               | Checks which command is being called and dispatches to the right logic   |
-| `print(...)`                              | CLI output/feedback to the user                                           |
+| `args = parser.parse_args()`               | Parses user input from the command line                                   |
+| `if args.command == "add":`                | Checks which command is being called and dispatches to the right logic    |
+| `print(...)`                               | CLI output/feedback to the user                                           |
 
 ---
 
@@ -30,7 +30,7 @@ This module defines the command-line interface for the Todo CLI app using Python
 
 | Command             | Syntax                                                           | Description                                     |
 |---------------------|------------------------------------------------------------------|-------------------------------------------------|
-| `add`               | `todo add "Task content" [--priority low|medium|high]`     | Add a new task with optional priority           |
+| `add`               | `todo add "Task content" [--priority low|medium|high]`           | Add a new task with optional priority           |
 | `list`              | `todo list [--done|--undone] [--priority LEVEL] [--sort priority]`| List tasks with optional filters                |
 | `complete`          | `todo complete <id>`                                             | Mark a task as completed                        |
 | `delete`            | `todo delete <id>`                                               | Delete a task by ID                             |

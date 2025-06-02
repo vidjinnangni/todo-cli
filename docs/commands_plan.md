@@ -9,7 +9,7 @@ This document describes all available (and planned) commands for the Todo CLI.
 This table summarizes the available commands for the Todo CLI application.
 
 | Command            | Syntax                                                             | Description                                                |
-|--------------------|---------------------------------------------------------------------|------------------------------------------------------------|
+|--------------------|--------------------------------------------------------------------|------------------------------------------------------------|
 | `add`              | `todo add "task content" [--priority low|medium|high]`             | Add a new task with optional priority (default: medium)    |
 | `list`             | `todo list`                                                        | List all tasks (completed + not completed)                 |
 | `list --done`      | `todo list --done`                                                 | Show only completed tasks                                  |
