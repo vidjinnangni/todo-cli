@@ -16,13 +16,13 @@ This roadmap outlines upcoming features and improvements planned for the Todo CL
 - Welcome message on launch
 - TypedDict-aware tests
 - Task priority support (`--priority`, `--sort priority`)
+- Add versioning system
 
 ---
 
 ## 🔜 In Progress / Next Steps
 
 - [ ] Improved CLI output (UX polish)
-- [ ] Add changelog and versioning system
 
 ---
 
