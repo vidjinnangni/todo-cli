@@ -28,8 +28,6 @@ This module defines the command-line interface for the Todo CLI app using Python
 
 ## 📦 Available Commands
 
-## 📦 Available Commands
-
 | Command             | Syntax                                                           | Description                                     |
 |---------------------|------------------------------------------------------------------|-------------------------------------------------|
 | `add`               | `todo add "Task content" [--priority low|medium|high]`     | Add a new task with optional priority           |
