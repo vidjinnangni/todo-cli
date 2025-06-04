@@ -10,20 +10,21 @@ This table summarizes the available commands for the Todo CLI application.
 
 | Command            | Syntax                                                             | Description                                                |
 |--------------------|--------------------------------------------------------------------|------------------------------------------------------------|
-| `add`              | `todo add "task content" [--priority low|medium|high]`             | Add a new task with optional priority (default: medium)    |
+| `add`              | `todo add "task content" [--priority low\|medium\|high]`           | Add a new task with optional priority (default: medium)    |
 | `list`             | `todo list`                                                        | List all tasks (completed + not completed)                 |
 | `list --done`      | `todo list --done`                                                 | Show only completed tasks                                  |
 | `list --undone`    | `todo list --undone`                                               | Show only uncompleted tasks                                |
-| `list --priority`  | `todo list --priority high`                                        | Show tasks filtered by priority                            |
+| `list --priority`  | `todo list --priority [low\|medium\|high]`                         | Show tasks filtered by selected priority                   |
 | `list --sort`      | `todo list --sort priority`                                        | Sort tasks by priority (high > medium > low)               |
 | `complete`         | `todo complete <id>`                                               | Mark a task as completed                                   |
 | `delete`           | `todo delete <id>`                                                 | Delete a task by its ID                                    |
 | `clear`            | `todo clear`                                                       | Delete all tasks                                           |
 
 ⚠️ **Notes:**
-- `--done` and `--undone` are mutually exclusive.
-- You can combine `--priority` and `--sort`, but they are optional.
-- Priority values are: `low`, `medium`, and `high`.
+
+- `--done` and `--undone` cannot be used together.
+- `--priority` and `--sort` can be combined or used independently.
+- Valid priority levels are: `low`, `medium`, and `high` (default: `medium`).
 
 ---
 
@@ -45,4 +46,4 @@ todo clear
 
 - All commands are subcommands defined with argparse in main.py
 - Each command maps to a function in core.py
-- The CLI is easily extensible: just add a parser and a corresponding function call
+- The CLI is easily extensible: just add a parser and a corresponding function call.
