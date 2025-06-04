@@ -2,13 +2,15 @@
 
 A command-line Todo application built in Python, designed as a progressive learning project.
 
-
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Tests](https://github.com/vidjinnangni/todo-cli/actions/workflows/test.yaml/badge.svg)
+
+![Todo CLI](./imgs/screenshot.png)
 
 ---
+
+> [**Roadmap**](https://vidjinnangni.notion.site/Todo-CLI-Roadmap-207873f9fe5a80f38256eb0b0798e30a?source=copy_link)
 
 ## 📚 Learning Objectives
 
@@ -18,7 +20,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 - Get introduced to modern tools in the Python ecosystem:
   - `uv` for dependency management
   - `pyproject.toml` for project configuration
-  - Unit testing  
+  - Unit testing
   - `argparse` for command-line interfaces
   - And other tools/modules...
 - GitHub Actions
@@ -32,14 +34,14 @@ A command-line Todo application built in Python, designed as a progressive learn
 - ✅ Core logic implemented (add, list, complete, delete, clear)
 - ✅ Priority filtering and sorting
 - ✅ Fully tested with `pytest`
-- ✅ Continuous Integration (CI) set up 
-- ✅ CLI welcome screen and helpful feedback  
+- ✅ Continuous Integration (CI) set up
+- ✅ CLI welcome screen and helpful feedback
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 todo-cli/
 ├── src/
 │   └── todo_cli/                # Main application package
@@ -148,12 +150,13 @@ pytest
 This project is licensed under the MIT License.
 See the [LICENSE](/LICENSE) file for more information.
 
-
 ---
 
 ## 🙌 Contributions Welcome
 
 Contributions are not only welcome – they’re encouraged! Whether you’re a beginner looking to learn or an experienced developer with suggestions, ideas, or improvements, you’re invited to participate.
+
+> [**Roadmap**](https://vidjinnangni.notion.site/Todo-CLI-Roadmap-207873f9fe5a80f38256eb0b0798e30a?source=copy_link)
 
 Here’s how you can contribute:
 

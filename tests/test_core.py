@@ -62,14 +62,13 @@ def test_list_tasks_returns_all_added_tasks():
 # -------------------------------
 def test_complete_task_marks_as_done():
     task = core.add_task("Complete this task")
-    result: bool = core.complete_task(task["id"])
-    assert result is True
-    tasks = core.list_tasks()
-    assert tasks[0]["done"] is True
+    result = core.complete_task(task["id"])
+    assert result is not None
+    assert result["done"] is True
 
 def test_complete_task_fails_for_nonexistent_id():
-    result: bool = core.complete_task(999)
-    assert result is False
+    result = core.complete_task(999)
+    assert result is None
 
 # -------------------------------
 # ❌ Test: clear_tasks()
@@ -87,12 +86,31 @@ def test_clear_tasks_deletes_all():
 def test_delete_task_removes_specific_task():
     t1 = core.add_task("Keep me")
     core.add_task("Delete me")
-    result: bool = core.delete_task(t1["id"])
-    assert result is True
+    result = core.delete_task(t1["id"])
+    assert result is not None
     tasks = core.list_tasks()
     assert len(tasks) == 1
     assert tasks[0]["text"] == "Delete me"
 
 def test_delete_task_fails_for_nonexistent_id():
-    result: bool = core.delete_task(12345)
-    assert result is False
+    result = core.delete_task(12345)
+    assert result is None
+
+# -------------------------------
+# 🧪 Sorting & Filtering (core logic-based)
+# -------------------------------
+def test_tasks_sorted_by_priority():
+    core.add_task("Low priority", priority="low")
+    core.add_task("High priority", priority="high")
+    core.add_task("Medium priority", priority="medium")
+    tasks = sorted(core.list_tasks(), key=lambda t: ("high", "medium", "low").index(t["priority"]))
+    priorities = [task["priority"] for task in tasks]
+    assert priorities == ["high", "medium", "low"]
+
+def test_tasks_filtered_by_priority():
+    core.add_task("Important", priority="high")
+    core.add_task("Trivial", priority="low")
+    filtered = [t for t in core.list_tasks() if t["priority"] == "high"]
+    assert len(filtered) == 1
+    assert filtered[0]["text"] == "Important"
+    assert filtered[0]["priority"] == "high"

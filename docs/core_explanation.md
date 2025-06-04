@@ -14,8 +14,9 @@ All core operations like adding, listing, marking, and clearing tasks are define
 ]
 ```
 
-## Task Type
-Each task is defined as a TypedDict:
+## Task structure
+
+Each task is defined using a TypedDict for type safety and readability:
 
 ```python
 {
@@ -26,8 +27,8 @@ class TaskDict(TypedDict):
     priority: Literal["low", "medium", "high"]
 }
 ```
-The default priority for new tasks is "medium".
 
+The default priority for new tasks is "medium".
 
 ## 🧩 Function Summary
 
@@ -35,10 +36,10 @@ The default priority for new tasks is "medium".
 |-----------------------|--------------------------------------------------|
 | `load_tasks()`        | Load tasks from the JSON file                    |
 | `save_tasks(tasks)`   | Save tasks to the JSON file                      |
-| `add_task(text)`      | Create and add a new task                        |
+| `add_task(text)`      | Create and add a new task (optional priority)    |
 | `list_tasks()`        | Return all existing tasks                        |
-| `complete_task(id)`   | Mark a task as completed by its ID               |
-| `delete_task(id)`     | Delete a task by its ID                          |
+| `complete_task(id)`   | Mark a task as done. Returns the task, or None if not found|
+| `delete_task(id)`     | Delete a task by ID. Returns the task, or None if not found|
 | `clear_tasks()`       | Delete all tasks from the list                   |
 
 ## 🗂️ File Organization (`core.py`)
@@ -57,7 +58,12 @@ To make the code more maintainable, functions in core.py are grouped by responsi
 
 ## 📚 Notes
 
-- If the file is missing or contains invalid JSON, the app falls back to an empty list.
-- Task IDs are automatically incremented based on the highest existing ID.
-- Tasks are saved immediately after any change.
-- This structure can be refactored later to support other backends like SQLite, CSV, or an API.
+- Task IDs are incremental and persistent
+- Invalid/missing file → fallback to empty list
+- JSON output is UTF-8 and indented for readability
+- Structure is ready for evolution toward:
+  - Categories/tags
+  - Dates
+  - Rich output
+  - Cloud sync or database backend
+  

@@ -99,27 +99,21 @@ def list_tasks() -> List[Task]:
     return load_tasks()
 
 # ---------------------------
-# ✅ Task updates
+# ✅ Task completion
 # ---------------------------
 
-def complete_task(task_id: int) -> bool:
+def complete_task(task_id: int) -> Task | None:
     """
     Mark a task as completed by its ID.
-    Returns True if the task was found and updated, False otherwise.
+    Returns the updated task if found and updated, None otherwise.
     """
     tasks = load_tasks()
-    found = False
-
     for task in tasks:
         if task["id"] == task_id:
             task["done"] = True
-            found = True
-            break
-
-    if found:
-        save_tasks(tasks)
-        return True
-    return False
+            save_tasks(tasks)
+            return task
+    return None
 
 # ---------------------------
 # ❌ Task deletion
@@ -131,16 +125,15 @@ def clear_tasks() -> None:
     """
     save_tasks([])
 
-def delete_task(task_id: int) -> bool:
+def delete_task(task_id: int) -> Task | None:
     """
     Delete a task by its ID.
-    Returns True if the task was deleted, False if not found.
+    Returns the deleted task if found and removed, None otherwise.
     """
     tasks = load_tasks()
-    new_tasks = [task for task in tasks if task["id"] != task_id]
-
-    if len(new_tasks) == len(tasks):
-        return False
-
-    save_tasks(new_tasks)
-    return True
+    for task in tasks:
+        if task["id"] == task_id:
+            tasks.remove(task)
+            save_tasks(tasks)
+            return task
+    return None
