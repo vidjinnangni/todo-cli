@@ -7,7 +7,8 @@
 
 import json
 import os
-from typing import List, Literal, TypedDict
+from datetime import datetime, timezone
+from typing import List, Literal, TypedDict, Optional
 
 # ----------------------------------------
 # 📦 TypedDict for tasks with priority
@@ -20,6 +21,8 @@ class TaskDict(TypedDict):
     text: str
     done: bool
     priority: Priority
+    created: str
+    due: Optional[str]
 
 Task = TaskDict
 
@@ -46,7 +49,13 @@ def load_tasks() -> List[Task]:
 
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         try:
-            return json.load(f)
+            tasks = json.load(f)
+            for task in tasks:
+                if "created" not in task:
+                    task["created"] = ""
+                if "due" not in task:
+                    task["due"] = ""
+            return tasks
         except json.JSONDecodeError:
             return []
 
@@ -62,7 +71,7 @@ def save_tasks(tasks: List[Task]) -> None:
 # ➕ Task creation
 # ---------------------------
 
-def add_task(text: str, priority: Priority = "medium") -> Task:
+def add_task(text: str, priority: Priority = "medium", due: Optional[str] = None) -> Task:
     """
     Create a new task and save it.
     - Automatically assigns an ID based on the last task.
@@ -81,7 +90,9 @@ def add_task(text: str, priority: Priority = "medium") -> Task:
         "id": new_id,
         "text": text,
         "done": False,
-        "priority": priority
+        "priority": priority,
+        "created": datetime.now(timezone.utc).isoformat(timespec="seconds"), # Store creation time in ISO format
+        "due": due or "",
     }
 
     tasks.append(task)
@@ -96,7 +107,11 @@ def list_tasks() -> List[Task]:
     """
     Return all saved tasks.
     """
-    return load_tasks()
+    tasks = load_tasks()
+    for task in tasks:
+        if "created" not in task:
+            task["created"] = ""
+    return tasks
 
 # ---------------------------
 # ✅ Task completion

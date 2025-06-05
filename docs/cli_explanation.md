@@ -16,25 +16,25 @@ This module defines the command-line interface for the Todo CLI app using Python
 |--------------------------------------------|---------------------------------------------------------------------------|
 | `import argparse`                          | Standard library to handle command-line arguments                         |
 | `from . import core`                       | Imports the task logic from `core.py`                                     |
-| `argparse.ArgumentParser(...)`             | Initializes the main parser|
+| `argparse.ArgumentParser(...)`             | Initializes the main parser                                               |
 | `subparsers = parser.add_subparsers(...)`  | Allows for multiple subcommands (add, list, etc.)                         |
 | `add_parser = subparsers.add_parser(...)`  | Defines the `add` command                                                 |
 | `add_parser.add_argument(...)`             | Adds a required task text argument                                        |
-| `args = parser.parse_args()`              | Parses user input from the command line                                   |
-| `if args.command == "add":`               | Checks which command is being called and dispatches to the right logic   |
-| `print(...)`                              | CLI output/feedback to the user                                           |
+| `args = parser.parse_args()`               | Parses user input from the command line                                   |
+| `if args.command == "add":`                | Checks which command is being called and dispatches to the right logic    |
+| `print(...)`                               | CLI output/feedback to the user                                           |
 
 ---
 
 ## 📦 Available Commands
 
-| Command             | Syntax                                                           | Description                                     |
-|---------------------|------------------------------------------------------------------|-------------------------------------------------|
-| `add`               | `todo add "Task content" [--priority low/medium/high]`   | Add a new task with optional priority   |
-| `list`              | `todo list [--done/--undone] [--priority LEVEL] [--sort priority]`  | List tasks with optional filters   |
-| `complete`          | `todo complete <id>`                                             | Mark a task as completed                        |
-| `delete`            | `todo delete <id>`                                               | Delete a task by ID                             |
-| `clear`             | `todo clear`                                                     | Delete all tasks                                |
+| Command   | Syntax                                                                | Description                           |
+|-----------|-----------------------------------------------------------------------|---------------------------------------|
+| `add`     | `todo add "Task" [--priority low/medium/high] [--due YYYY-MM-DD]`     | Add a new task with priority and due  |
+| `list`    | `todo list [--done] [--undone] [--priority LEVEL] [--sort priority] [--verbose]` | List tasks with filters, sort or full details |
+| `complete`| `todo complete <id>`                                                  | Mark a task as completed              |
+| `delete`  | `todo delete <id> [id ...]`                                           | Delete one or more tasks by ID        |
+| `clear`   | `todo clear`                                                          | Delete all tasks                      |
 
 You can also run help for each subcommand:
 
@@ -48,18 +48,30 @@ todo list --help
 ## ✅ Examples
 
 ```bash
-todo add "Buy groceries"
-todo add "Pay bills" --priority high
+todo add "Submit report" --priority high --due 2025-06-10
 
 todo list
+todo list --verbose
 todo list --priority high
 todo list --sort priority
 todo list --done
 
 todo complete 1
 todo delete 1
+todo delete 2 3 4
 todo clear
 ```
+
+## 🏷️ Flags & Filters
+
+| Flag        | Description                                |
+|-------------|--------------------------------------------|
+| `--priority`| Filter by or assign priority               |
+| `--due`     | Add a due date to a task (YYYY-MM-DD)      |
+| `--done`    | Show only completed tasks                  |
+| `--undone`  | Show only uncompleted tasks                |
+| `--sort`    | Sort tasks (currently only by priority)    |
+| `--verbose` | Show detailed task info including `created`|
 
 ## 🧪 Testing Your CLI
 
@@ -72,7 +84,7 @@ uv sync
 Then, try some commands using uv run:
 
 ```bash
-uv run todo add "Test the CLI"
+uv run todo add "Submit report" --priority high --due 2025-06-10
 uv run todo list
 ```
 
@@ -80,7 +92,7 @@ Or with environment activation:
 
 ```bash
 source .venv/bin/activate
-todo list
+todo add "Submit report" --priority high --due 2025-06-10
 ```
 
 ## 🔍 Notes

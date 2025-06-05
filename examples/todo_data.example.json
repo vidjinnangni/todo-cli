@@ -3,12 +3,16 @@
     "id": 1,
     "text": "Buy milk",
     "done": false,
-    "priority": "medium"
+    "priority": "medium",
+    "created": "2025-06-01T09:00:00+00:00",
+    "due": "2025-06-15"
   },
   {
     "id": 2,
     "text": "Write documentation",
     "done": true,
-    "priority": "high"
+    "priority": "high",
+    "created": "2025-06-02T10:30:00+00:00",
+    "due": ""
   }
 ]
