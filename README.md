@@ -3,14 +3,17 @@
 A command-line Todo application built in Python, designed as a progressive learning project.
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![Learning Project](https://img.shields.io/badge/type-Learning_Project-purple)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+![Version](https://img.shields.io/badge/version-0.1.5-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Good First Issue](https://img.shields.io/badge/good%20first%20issue-welcome-blueviolet)
 
 ![Todo CLI](./imgs/screenshot.png)
 
 ---
 
-> [**Roadmap**](https://vidjinnangni.notion.site/Todo-CLI-Roadmap-207873f9fe5a80f38256eb0b0798e30a?source=copy_link)
+> 👉🏾 See the project [**Roadmap**](https://vidjinnangni.notion.site/Todo-CLI-Roadmap-207873f9fe5a80f38256eb0b0798e30a?source=copy_link)
 
 ## 📚 Learning Objectives
 
@@ -36,6 +39,10 @@ A command-line Todo application built in Python, designed as a progressive learn
 - ✅ Fully tested with `pytest`
 - ✅ Continuous Integration (CI) set up
 - ✅ CLI welcome screen and helpful feedback
+- ✅ Task metadata: `created` and `due` dates
+- ✅ Enhanced list display with `--verbose`
+- ✅ Display of due date by default
+- ✅ Support for multi-ID delete
 
 ---
 
@@ -93,13 +100,9 @@ source .venv/bin/activate
     "id": 1,
     "text": "Buy milk",
     "done": false,
-    "priority": "medium"
-  },
-  {
-    "id": 2,
-    "text": "Write documentation",
-    "done": true,
-    "priority": "high"
+    "priority": "medium",
+    "created": "2025-06-01T12:00:00+00:00",
+    "due": "2025-06-15"
   }
 ]
 ```
@@ -109,15 +112,24 @@ source .venv/bin/activate
 Run the CLI tool without activating the environment:
 
 ```bash
-uv run todo add "Buy milk" --priority high
+uv run todo add "Submit report" --priority high --due 2025-06-10
 uv run todo list
+uv run todo list --verbose
 ```
+
+> command `todo list`
+
+![todo list command](/imgs/todo_list.png)
+
+> command `todo list --verbose`
+
+![todo list verbose](/imgs/todo_list_verbose.png)
 
 Or activate the environment and use `todo` directly:
 
 ```bash
 source .venv/bin/activate
-todo add "Buy milk"
+todo add "Submit report" --priority high --due 2025-06-10
 ```
 
 📚 Learn how the CLI is implemented internally → [CLI Architecture](docs/cli_explanation.md)

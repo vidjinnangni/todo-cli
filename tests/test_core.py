@@ -31,15 +31,19 @@ def cleanup_test_file():
 # -------------------------------
 # ➕ Test: add_task()
 # -------------------------------
+# This test checks if a new task is created correctly with default values.
 def test_add_task_creates_new_task():
     task: TaskDict = core.add_task("Write unit tests")
     assert task == {
-        "id": 1,
-        "text": "Write unit tests",
-        "done": False,
-        "priority": "medium"
+        "id": 1, # Assuming this is the first task, ID should be 1
+        "text": "Write unit tests", # Task text
+        "done": False, # New task should not be done
+        "priority": "medium", # Default priority
+        "created": task["created"],  # Ensure created date is set
+        "due": ""  # Default due date is empty
     }
 
+# This test checks if a new task can be added with a specific priority.
 def test_add_task_with_custom_priority():
     task: TaskDict = core.add_task("Urgent fix", priority="high")
     assert task["priority"] == "high"

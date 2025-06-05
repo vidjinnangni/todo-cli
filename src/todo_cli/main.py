@@ -4,20 +4,16 @@
 # It allows users to add, list, complete, delete, and clear tasks.
 # ----------------------------------------
 
+# ----------------------------------------
+# 📦 Imports
+# ----------------------------------------
 import argparse
 from . import core
+from .utils import print_message, format_task_table, print_task_summary
 
-def print_message(kind: str, message: str) -> None:
-    icons = {
-        "success": "✅",
-        "delete": "🗑️",
-        "error": "❌",
-        "warning": "⚠️",
-        "info": "ℹ️",
-    }
-    prefix = icons.get(kind, "")
-    print(f"{prefix} {message}")
-
+# ----------------------------------------
+# 📝 Main function to handle CLI commands
+# ----------------------------------------
 def main():
     parser = argparse.ArgumentParser(
         description="📝 Todo CLI – A simple and minimalist command-line todo manager.",
@@ -34,6 +30,11 @@ def main():
         choices=["low", "medium", "high"],
         default="medium",
         help="Set task priority (default: medium)"
+    )
+    add_parser.add_argument(
+        "--due",
+        type=str,
+        help="Set a due date for the task (format: YYYY-MM-DD) - optional"
     )
 
     # === list command ===
@@ -58,6 +59,12 @@ def main():
         choices=["priority"],
         help="Sort tasks by field (currently only 'priority' is supported)"
     )
+    list_parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Show detailed task information like creation date and time"
+    )
+
 
     # === complete command ===
     complete_parser = subparsers.add_parser("complete", help="Mark a task as completed")
@@ -67,11 +74,16 @@ def main():
     subparsers.add_parser("clear", help="Delete all tasks")
 
     # === delete command ===
-    delete_parser = subparsers.add_parser("delete", help="Delete a task by its ID")
-    delete_parser.add_argument("id", type=int, help="ID of the task to delete")
+    delete_parser = subparsers.add_parser("delete", help="Delete one or more tasks by their ID")
+    delete_parser.add_argument("ids", type=int, nargs="+", help="ID(s) of the task(s) to delete")
 
     args = parser.parse_args()
 
+# ----------------------------------------
+# 📝 Command handling
+# ----------------------------------------
+
+    # If no command is provided, show the welcome message and available commands
     if not args.command:
         print("""
 👋 Welcome to todo-cli!
@@ -91,41 +103,49 @@ This is a simple and minimalist command-line todo manager.
 
     # Add command handling
     if args.command == "add":
-        task = core.add_task(args.text, priority=args.priority)
-        print_message("success", f'Task added: [{task["id"]}] {task["text"]} (priority: {task["priority"]})')
-        print_message("info", "You can now list your tasks with `todo list`.")
+        task = core.add_task(args.text, priority=args.priority, due=args.due)
+        if task:
+            meta_parts = [f"priority: {task['priority']}"]
+            if task["due"]:
+                meta_parts.append(f"due: {task['due']}")
+            meta_str = " ".join(f"({part})" for part in meta_parts)
+            
+            print_message("success", f'Task added: [{task["id"]}] {task["text"]} {meta_str}')
+            print()
+            print_message("info", "You can now list your tasks with `todo list`.")
 
     # List command handling
     elif args.command == "list":
         tasks = core.list_tasks()
 
-        # Validate and apply --done / --undone
+        # Check if there are any tasks to display
         if args.done and args.undone:
             print_message("warning", "You can't use --done and --undone together.")
+            print()
             print_message("info", "Please choose one of them to filter tasks.")
             return
         
+        # Filter tasks based on command-line arguments
         if args.done:
             tasks = [task for task in tasks if task["done"]]
         elif args.undone:
             tasks = [task for task in tasks if not task["done"]]
 
-        # Filter by priority
+        # Filter by priority if specified
         if args.priority:
             tasks = [t for t in tasks if t["priority"] == args.priority]
 
-        # Sort by priority if needed
+        # Sort tasks if specified
         if args.sort == "priority":
             priority_order = {"high": 0, "medium": 1, "low": 2}
             tasks.sort(key=lambda t: priority_order.get(t["priority"], 1))
 
+        # If no tasks match the filters, show a message
         if not tasks:
             print_message("info", "No tasks found.")
         else:
-            for task in tasks:
-                    status = "✓" if task["done"] else " "
-                    priority = task.get("priority", "medium")  # Default fallback
-                    print(f"[{task['id']}] [{status}] {task['text']} (priority: {priority})")
+            print(format_task_table(tasks, verbose=args.verbose))
+            print_task_summary(tasks)
 
     # Complete command handling
     elif args.command == "complete":
@@ -140,14 +160,15 @@ This is a simple and minimalist command-line todo manager.
         core.clear_tasks()
         print_message("info", "All tasks cleared.")
 
-    # Delete command handling   
+    # Delete command handling
     elif args.command == "delete":
-        task = core.delete_task(args.id)
-        if task:
-            print_message("delete", f'Task [{task["id"]}] "{task["text"]}" deleted.')
-        else:
-            print_message("error", f"Sorry, task [{args.id}] not found.")
+        for task_id in args.ids:
+            task = core.delete_task(task_id)
+            if task:
+                print_message("delete", f'Task [{task["id"]}] "{task["text"]}" deleted.')
+            else:
+                print_message("error", f"Sorry, task [{task_id}] not found.")
 
-    # Handle unknown commands
+    # If command is not recognized
     else:
         print_message("error", "Unknown command. Use `todo --help` to see available commands.")
