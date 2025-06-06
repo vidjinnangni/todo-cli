@@ -46,6 +46,33 @@ A command-line Todo application built in Python, designed as a progressive learn
 
 ---
 
+## Quick Install (Recommended)
+
+If you just want to use the `todo` CLI tool without cloning the repository, you can install it globally using [`pipx`](https://pypa.github.io/pipx/):
+
+```bash
+brew install pipx
+pipx ensurepath
+pipx install todo-cli-x
+```
+
+Once installed, run the CLI from anywhere in your terminal:
+
+```bash
+todo --help
+todo add "Submit report" --priority high --due 2025-06-10
+todo list
+todo list --verbose
+```
+
+To upgrade later:
+
+```bash
+pipx upgrade todo-cli-x
+```
+
+---
+
 ## 📂 Project Structure
 
 ```text
@@ -65,7 +92,7 @@ todo-cli/
 └── .python-version              # Python version used for the virtual environment (3.11)
 ```
 
-## 🛠️ Installation
+## Local Development Setup
 
 Clone the repository:
 
@@ -88,7 +115,7 @@ uv sync
 source .venv/bin/activate
 ```
 
-## 📁 Task Storage
+### Task Storage
 
 - All tasks are stored in a local file named `todo_data.json` (automatically created when needed).
 - This file is **excluded from version control** (`.gitignore`) to avoid polluting the repository with user data.
@@ -107,7 +134,7 @@ source .venv/bin/activate
 ]
 ```
 
-## 🚀 Usage
+### Usage
 
 Run the CLI tool without activating the environment:
 
@@ -134,7 +161,7 @@ todo add "Submit report" --priority high --due 2025-06-10
 
 📚 Learn how the CLI is implemented internally → [CLI Architecture](docs/cli_explanation.md)
 
-## 🧪 Running Tests
+### Running Tests
 
 First, install all dependencies:
 
