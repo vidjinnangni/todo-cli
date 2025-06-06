@@ -1,5 +1,5 @@
 # ----------------------------------------
-# Todo CLI - A simple command-line todo application
+# Todo CLI X - A simple command-line todo application
 # This script provides a command-line interface for managing todo tasks.
 # It allows users to add, list, complete, delete, and clear tasks.
 # ----------------------------------------

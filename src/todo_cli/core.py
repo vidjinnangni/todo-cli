@@ -1,5 +1,5 @@
 # ----------------------------------------
-# 📝 Todo CLI Core Module
+# 📝 Todo CLI X Core Module
 # This module contains the core logic for the Todo CLI application.
 # It handles task management including creation, listing, updating, and deletion.
 # It uses a JSON file to persist tasks across sessions.

@@ -1,4 +1,4 @@
-# 📝 Python Todo CLI
+# 📝 Todo CLI X
 
 A command-line Todo application built in Python, designed as a progressive learning project.
 
@@ -9,7 +9,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Good First Issue](https://img.shields.io/badge/good%20first%20issue-welcome-blueviolet)
 
-![Todo CLI](./imgs/screenshot.png)
+![Todo CLI X](./imgs/screenshot.png)
 
 ---
 
