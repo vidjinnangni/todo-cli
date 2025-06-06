@@ -1,0 +1,55 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Todo-CLI",
+  "theme": "almond",
+  "logo": {
+    "dark": "/logo/dark.png",
+    "light": "/logo/light.png",
+    "alt": "Todo-CLI",
+    "href": "https://todocli.vmslab.work"
+  },
+  "favicon": "./favicon.png",
+  "colors": {
+    "primary": "#000000",
+    "light": "#EDEDED",
+    "dark": "#161616"
+  },
+  "topbarLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/vidjinnangni/todo-cli"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Try CLI",
+    "url": "https://todocli.vmslab.work"
+  },
+  "anchors": [
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/vidjinnangni/todo-cli"
+    }
+  ],
+  "navigation": {
+    "pages": [
+      "introduction",
+      "installation"
+    ],
+    "languages": [],
+    "versions": [],
+    "tabs": [
+      {
+        "name": "GitHub",
+        "icon": "github",
+        "href": "https://github.com/vidjinnangni/todo-cli"
+      }
+    ],
+    "dropdowns": [],
+    "anchors": [],
+    "groups": []
+  },
+  "footerSocials": {
+    "github": "https://github.com/vidjinnangni/todo-cli"
+  }
+}
