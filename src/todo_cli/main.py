@@ -16,7 +16,7 @@ from .utils import print_message, format_task_table, print_task_summary
 # ----------------------------------------
 def main():
     parser = argparse.ArgumentParser(
-        description="📝 Todo CLI – A simple and minimalist command-line todo manager.",
+        description="📝 Todo CLI X – A simple and minimalist command-line todo manager.",
         epilog="🔎 Use 'todo <command> --help' to get more details about a specific command."
     )
 
@@ -86,7 +86,7 @@ def main():
     # If no command is provided, show the welcome message and available commands
     if not args.command:
         print("""
-👋 Welcome to todo-cli!
+👋 Welcome to Todo CLI X!
 
 This is a simple and minimalist command-line todo manager.
 
