@@ -33,6 +33,7 @@
   ],
   "navigation": {
     "pages": [
+      "index",
       "introduction",
       "installation"
     ],
