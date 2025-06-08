@@ -41,7 +41,7 @@
             ]
           },
           {
-            "group": "Advanced",
+            "group": "Development",
             "pages": [
               "dev/development",
               "dev/core_explanation",
