@@ -1,24 +1,61 @@
 ---
-title: Installation
-description: How to install and run Todo CLI X using Python and uv.
+title: "Quick install"
+description: "How to install and run Todo CLI X using Python and pipx or uv."
 ---
 
-Todo CLI X is built with Python and can be installed in just a few steps using [**uv**](https://github.com/astral-sh/uv), a fast dependency manager.
+## Quick install (Recommended)
 
----
+The fastest way to get started with **Todo CLI X** is by installing it globally with [`pipx`](https://pypa.github.io/pipx/), a Python packaging tool for installing CLI applications in isolated environments.
 
-### Requirements
+## Requirements
 
 - Python 3.11+
-- [uv](https://github.com/astral-sh/uv) installed (`pip install uv` or see [installation instructions](https://github.com/astral-sh/uv#installation))
-- Git (to clone the repository)
+- [pipx](https://pypa.github.io/pipx/)
+
+## Install via `pipx`
+
+First, make sure you have `pipx` installed:
+
+<Tabs>
+  <Tab title="macOS (Homebrew)">
+  
+  ```bash Bash
+  brew install pipx
+  pipx ensurepath
+  pipx install todo-cli-x
+  ```
+  </Tab>
+  
+  <Tab title="Linux / Windows">
+
+  ```bash
+  python3 -m pip install --user pipx
+  python3 -m pipx ensurepath
+  pipx install todo-cli-x
+  ```
+  </Tab>
+
+</Tabs>
+
+
+<Tip>You may need to restart your terminal or shell after installing pipx.</Tip>
+
+Once installed, you can run the CLI from anywhere:
+
+```bash Bash
+todo --help
+todo add "Submit report" --priority high --due 2025-06-10
+todo list
+todo list --verbose
+```
+
+To upgrade later:
+
+```bash Bash
+pipx upgrade todo-cli-x
+```
 
 ---
 
-### Quick Setup
-
-Clone the project:
-
-```bash
-git clone https://github.com/vidjinnangni/todo-cli.git
-cd todo-cli
+<Warning>`pipx` is recommended if you just want to use the CLI.
+The source install is better if you want to contribute or modify the code.</Warning>

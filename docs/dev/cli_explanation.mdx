@@ -1,6 +1,9 @@
-# 🧠 CLI Entry Point (`main.py`)
+---
+title: "CLI entry point"
+description: ""
+---
 
-This module defines the command-line interface for the Todo CLI app using Python's built-in `argparse` module.
+This page defines the command-line interface for the Todo CLI X app using Python's built-in `argparse` module.
 
 - Located at: `src/todo_cli/main.py`
 - Responsible for parsing user commands and calling the appropriate logic from `core.py`
@@ -10,7 +13,7 @@ This module defines the command-line interface for the Todo CLI app using Python
 
 `src/todo_cli/main.py`
 
-## ⚙️ Command Flow Overview
+## Command flow overview
 
 | Line / Code                                | Explanation                                                               |
 |--------------------------------------------|---------------------------------------------------------------------------|
@@ -26,7 +29,7 @@ This module defines the command-line interface for the Todo CLI app using Python
 
 ---
 
-## 📦 Available Commands
+## Available commands
 
 | Command   | Syntax                                                                | Description                           |
 |-----------|-----------------------------------------------------------------------|---------------------------------------|
@@ -36,7 +39,7 @@ This module defines the command-line interface for the Todo CLI app using Python
 | `delete`  | `todo delete <id> [id ...]`                                           | Delete one or more tasks by ID        |
 | `clear`   | `todo clear`                                                          | Delete all tasks                      |
 
-You can also run help for each subcommand:
+<Tip>You can also run `help` for each subcommand</Tip>
 
 ```bash
 todo add --help
@@ -45,7 +48,7 @@ todo list --help
 
 ---
 
-## ✅ Examples
+## Examples
 
 ```bash
 todo add "Submit report" --priority high --due 2025-06-10
@@ -62,7 +65,7 @@ todo delete 2 3 4
 todo clear
 ```
 
-## 🏷️ Flags & Filters
+## Flags & Filters
 
 | Flag        | Description                                |
 |-------------|--------------------------------------------|
@@ -73,7 +76,7 @@ todo clear
 | `--sort`    | Sort tasks (currently only by priority)    |
 | `--verbose` | Show detailed task info including `created`|
 
-## 🧪 Testing Your CLI
+## Testing Your CLI
 
 First, sync your environment with uv:
 
@@ -95,11 +98,11 @@ source .venv/bin/activate
 todo add "Submit report" --priority high --due 2025-06-10
 ```
 
-## 🔍 Notes
+## Notes
 
-- All commands are handled through argparse subparsers.
+- All commands are handled through `argparse` subparsers.
 - Each subcommand maps cleanly to logic defined in core.py.
-- New commands can be added easily by repeating the add_parser pattern.
-- The main() function acts as the dispatch layer, keeping CLI modular and maintainable.
+- New commands can be added easily by repeating the `add_parser` pattern.
+- The `main()` function acts as the dispatch layer, keeping CLI modular and maintainable.
 
-➡️ This design makes the CLI clean, extensible, and aligned with best practices.
+<Note>This design makes the CLI clean, extensible, and aligned with best practices.</Note>

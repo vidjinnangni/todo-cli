@@ -1,12 +1,15 @@
-# 🚀 Commands Plan (`todo` CLI)
+---
+title: "Commands plan"
+description: ""
+---
 
-This document describes all available (and planned) commands for the Todo CLI.
+This document describes all available (and planned) commands for the Todo CLI X application.
 
 ---
 
-## 📚 Command Overview
+## Commands overview
 
-This table summarizes the available commands for the Todo CLI application.
+This table summarizes the available commands for the Todo CLI X application.
 
 | Command              | Syntax                                                                 | Description                                                |
 |----------------------|------------------------------------------------------------------------|------------------------------------------------------------|
@@ -21,15 +24,18 @@ This table summarizes the available commands for the Todo CLI application.
 | `delete`             | `todo delete <id1> <id2> ...`                                          | Delete one or more tasks by ID                             |
 | `clear`              | `todo clear`                                                           | Delete all tasks                                           |
 
-⚠️ **Notes:**
+<Note>
+**Note**
 
 - `--done` and `--undone` cannot be used together.
 - `--priority` and `--sort` can be combined or used independently.
 - Valid priority levels are: `low`, `medium`, and `high` (default: `medium`).
 
+</Note>
+
 ---
 
-## ✅ Examples
+## Examples
 
 ```bash
 todo add "Prepare slides" --priority high --due 2025-07-01
@@ -45,7 +51,7 @@ todo delete 2 3
 todo clear
 ```
 
-## 🛠️ Notes
+## Notes
 
 - All commands are subcommands defined with argparse in main.py
 - Each command maps to a function in core.py

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
+  "$schema": "https://mintlify.com/docs.json",
   "name": "Todo-CLI",
   "theme": "almond",
   "logo": {
@@ -8,49 +8,68 @@
     "alt": "Todo-CLI",
     "href": "https://todocli.vmslab.work"
   },
-  "favicon": "./favicon.png",
+  "favicon": "/favicon.png",
   "colors": {
     "primary": "#000000",
     "light": "#EDEDED",
     "dark": "#161616"
   },
-  "topbarLinks": [
-    {
-      "name": "GitHub",
-      "url": "https://github.com/vidjinnangni/todo-cli"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Try CLI",
-    "url": "https://todocli.vmslab.work"
-  },
-  "anchors": [
-    {
-      "name": "GitHub",
-      "icon": "github",
-      "url": "https://github.com/vidjinnangni/todo-cli"
-    }
-  ],
-  "navigation": {
-    "pages": [
-      "index",
-      "introduction",
-      "installation"
-    ],
-    "languages": [],
-    "versions": [],
-    "tabs": [
+  "navbar": {
+    "links": [
       {
-        "name": "GitHub",
-        "icon": "github",
+        "label": "GitHub",
         "href": "https://github.com/vidjinnangni/todo-cli"
       }
     ],
-    "dropdowns": [],
-    "anchors": [],
-    "groups": []
+    "primary": {
+      "type": "button",
+      "label": "Try Todo CLI X",
+      "href": "https://pypi.org/project/todo-cli-x/"
+    }
   },
-  "footerSocials": {
-    "github": "https://github.com/vidjinnangni/todo-cli"
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Docs",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "index",
+              "get-started/introduction",
+              "get-started/installation"
+            ]
+          },
+          {
+            "group": "Advanced",
+            "pages": [
+              "dev/development",
+              "dev/core_explanation",
+              "dev/cli_explanation",
+              "dev/commands_plan"
+            ]
+          }
+        ]
+      }
+    ],
+    "versions": [
+      {
+        "label": "v0.1.5"
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "GitHub",
+          "href": "https://github.com/vidjinnangni/todo-cli",
+          "icon": "github"
+        }
+      ]
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/vidjinnangni/todo-cli"
+    }
   }
 }

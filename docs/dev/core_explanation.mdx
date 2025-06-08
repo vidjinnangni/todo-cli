@@ -1,14 +1,17 @@
-# 🧠 Core Logic Explanation (`core.py`)
+---
+title: "Core logic explanation"
+description: ""
+---
 
-This file contains the **business logic** for the Todo CLI application.  
-All core operations like adding, listing, marking, and clearing tasks are defined here.
+This page contains the **business logic** for the Todo CLI application.  
+All core operations like `adding`, `listing`, `marking`, and `clearing` tasks are defined here.
 
-## 📄 Storage
+## Storage
 
 - Tasks are stored in a file: `todo_data.json`
 - The format is JSON, with a list of objects:
 
-```json
+```json JSON
 [
   {
     "id": 1,
@@ -25,21 +28,21 @@ All core operations like adding, listing, marking, and clearing tasks are define
 
 Each task is defined using a TypedDict for type safety and readability:
 
-```python
+```python Python
 class TaskDict(TypedDict):
   id: int
   text: str
   done: bool
   priority: Literal["low", "medium", "high"]
-  created: str            # ISO 8601 timestamp
-  due: Optional[str]      # Optional due date (YYYY-MM-DD)
+  created: str
+  due: Optional[str]
 ```
 
-- The default priority for new tasks is "medium".
-- The created field is always generated automatically.
-- The due field is optional and can be left blank.
+- The default `priority` for new tasks is "medium".
+- The `created` field is always generated automatically.
+- The `due` field is optional and can be left blank.
 
-## 🧩 Function Summary
+## Function summary
 
 | Function              | Description                                      |
 |-----------------------|--------------------------------------------------|
@@ -51,7 +54,7 @@ class TaskDict(TypedDict):
 | `delete_task(id)`     | Delete a task by ID                              |
 | `clear_tasks()`       | Remove all tasks from the list                   |
 
-## 🗂️ File Organization (`core.py`)
+## File organization
 
 To make the code more maintainable, functions in core.py are grouped by responsibility.
 
@@ -65,7 +68,7 @@ To make the code more maintainable, functions in core.py are grouped by responsi
 
 ---
 
-## 📚 Notes
+## Notes
 
 - Task IDs are incremented automatically.
 - If the storage file is missing or invalid, an empty list is returned.

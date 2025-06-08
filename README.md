@@ -73,7 +73,9 @@ pipx upgrade todo-cli-x
 
 ---
 
-## 📂 Project Structure
+## Local Development Setup
+
+### 📂 Project Structure
 
 ```text
 todo-cli/
@@ -91,8 +93,6 @@ todo-cli/
 ├── .gitignore                   # Git ignored files and directories
 └── .python-version              # Python version used for the virtual environment (3.11)
 ```
-
-## Local Development Setup
 
 Clone the repository:
 

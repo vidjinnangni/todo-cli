@@ -1,0 +1,119 @@
+---
+title: "Environment"
+description: "How to set up a local development environment for Todo CLI X."
+---
+
+## Local development setup
+
+Set up Todo CLI X locally to explore the source code, run the CLI in dev mode, and contribute to the project.
+
+### Project Structure
+
+Here’s how the project Repo is organized:
+
+```text
+todo-cli/
+├── src/
+│   └── todo_cli/        # Main package
+│       ├── core.py      # Business logic
+│       └── main.py      # CLI entry point
+├── tests/               # Unit tests
+├── pyproject.toml       # Project config
+├── uv.lock              # Dependency lock
+├── README.md            # Main doc
+├── LICENSE              # MIT license
+└── .python-version      # Python 3.11
+```
+
+### Clone & Setup
+
+```bash Bash
+git clone https://github.com/vidjinnangni/todo-cli.git
+cd todo-cli
+uv sync
+```
+
+<Warning>Make sure you have Python 3.11+ and `uv` installed.</Warning>
+
+(Optional) Activate the virtual environment manually:
+
+```bash Bash
+source .venv/bin/activate  # macOS/Linux
+```
+
+### Task Storage
+
+- All tasks are stored in a local file named todo_data.json.
+- Automatically created when needed.
+- Ignored by Git (listed in .gitignore).
+
+```json JSON
+[
+  {
+    "id": 1,
+    "text": "Buy milk",
+    "done": false,
+    "priority": "medium",
+    "created": "2025-06-01T12:00:00+00:00",
+    "due": "2025-06-15"
+  }
+]
+```
+
+## Running the CLI (Dev Mode)
+
+Use `uv run` to run commands without activating the virtual environment:
+
+```bash Bash
+uv run todo add "Submit report" --priority high --due 2025-06-10
+uv run todo list
+uv run todo list --verbose
+```
+
+Or activate the environment and run directly:
+
+```bash Bash
+source .venv/bin/activate
+todo add "Submit report" --priority high --due 2025-06-10
+```
+
+## Running Tests
+
+Install dev dependencies:
+
+```bash Bash
+uv sync --extra dev
+```
+
+Run tests using:
+
+
+```bash bash
+uv run pytest
+```
+
+Or manually:
+
+```bash bash
+source .venv/bin/activate
+pytest
+```
+
+
+## Contributing
+
+We welcome all contributions! Whether you’re a beginner or a seasoned dev:
+
+- Report bugs
+- Suggest features
+- Improve code — refactor, clean up
+- Improve docs — like this one!
+
+
+<Note>Check out the [Roadmap](https://vidjinnangni.notion.site/Todo-CLI-X-Roadmap-207873f9fe5a80f38256eb0b0798e30a) for what’s ahead.</Note>
+
+---
+
+## License
+
+This project is licensed under the MIT License.
