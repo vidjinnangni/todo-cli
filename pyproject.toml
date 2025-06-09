@@ -1,6 +1,6 @@
 [project]
 name = "todo-cli-x"
-version = "1.0.0"
+version = "1.0.1"
 description = "A simple command-line todo application"
 authors = [{ name = "vidjinnangni", email = "gregory.thoto@gmail.com" }]
 readme = "README.md"
@@ -10,7 +10,7 @@ dependencies = []
 [project.urls]
 Homepage = "https://pypi.org/project/todo-cli-x/"
 Documentation = "https://todocli.vmslab.work/"
-Repository = "https://github.com/vidjinnangni/todo-cli"
+Repository = "https://github.com/vidjinnangni/todo-cli-x"
 Roadmap = "https://vidjinnangni.notion.site/Todo-CLI-Roadmap-207873f9fe5a80f38256eb0b0798e30a"
 
 [project.optional-dependencies]

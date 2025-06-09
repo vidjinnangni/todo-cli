@@ -10,6 +10,7 @@
 import argparse
 from . import core
 from .utils import print_message, format_task_table, print_task_summary
+from . import __version__
 
 # ----------------------------------------
 # 📝 Main function to handle CLI commands
@@ -19,6 +20,9 @@ def main():
         description="📝 Todo CLI X – A simple and minimalist command-line todo manager.",
         epilog="🔎 Use 'todo <command> --help' to get more details about a specific command."
     )
+    parser.add_argument(
+    "--version", "-v", action="version", version=f"todo-cli-x v{__version__}"
+)
 
     subparsers = parser.add_subparsers(dest="command", title="Available commands", metavar="")
 
