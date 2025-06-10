@@ -95,11 +95,11 @@ def main():
 This is a simple and minimalist command-line todo manager.
 
 📦 Available commands:
-• todo add "Task content" [--priority low|medium|high]               ➜ Add a new task with optional priority (default: medium)
-• todo list [--done | --undone] [--priority ...] [--sort priority]   ➜ List tasks with optional filters and sorting
-• todo complete <id>                                                 ➜ Mark a task as completed by ID
-• todo delete <id>                                                   ➜ Delete a task by ID
-• todo clear                                                         ➜ Delete all tasks
+• todo add "Task content" [--priority low|medium|high] [--due YYYY-MM-DD]    ➜ Add a new task with optional priority (default: medium) and due date
+• todo list [--done | --undone] [--priority ...] [--sort priority]           ➜ List tasks with optional filters and sorting
+• todo complete <id>                                                         ➜ Mark a task as completed by ID
+• todo delete <id>                                                           ➜ Delete a task by ID
+• todo clear                                                                 ➜ Delete all tasks
 
 ℹ️  Run `todo --help` for more details.
         """)

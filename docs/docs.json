@@ -37,7 +37,8 @@
             "pages": [
               "index",
               "get-started/introduction",
-              "get-started/installation"
+              "get-started/installation",
+              "get-started/commands"
             ]
           },
           {

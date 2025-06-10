@@ -1,0 +1,86 @@
+---
+title: "Commands"
+description: "Reference for all available commands in the Todo CLI X tool"
+---
+
+
+## Todo CLI X Commands
+
+This page lists all the available commands you can use with `todo`, along with usage examples.
+
+---
+
+### `--version`, `-v`
+
+Display the current installed version of Todo CLI X.
+
+```bash Bash
+todo --version
+# or
+todo -v
+```
+
+### `add` command
+
+Add a new task to your todo list.
+
+```bash Bash
+todo add "Write blog post"
+```
+
+**Options:**
+
+- `--priority [low|medium|high]` – Set the task’s priority
+- `--due YYYY-MM-DD` – Add a due date
+
+```bash bash
+todo add "Finish report" --priority high --due 2025-06-10
+```
+
+### `list` command
+
+```bash Bash
+todo list
+```
+
+**Options:**
+
+- `--verbose` – Show creation and due dates
+- `--priority [low|medium|high]` – Filter by priority
+
+
+### `complete` command
+
+Mark one or more tasks as done.
+
+```bash Bash
+todo complete 3
+```
+
+
+### `delete` command
+
+Delete one or more tasks by their ID.
+
+```bash Bash
+todo delete 2 5 7
+```
+
+### `clear` command
+
+Delete all tasks (⚠️ irreversible).
+
+```bash Bash
+todo clear
+```
+
+### `--help`
+
+Display help info for the main command or a subcommand.
+
+```bash Bash
+todo --help
+todo add --help
+```
+
+<Tip>You can always run `todo <command> --help` to get specific information about that command.</Tip>
