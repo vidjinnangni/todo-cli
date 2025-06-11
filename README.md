@@ -5,7 +5,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Learning Project](https://img.shields.io/badge/type-Learning_Project-purple)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-![Version](https://img.shields.io/badge/version-0.1.5-orange)
+![Version](https://img.shields.io/badge/version-1.0.2-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Good First Issue](https://img.shields.io/badge/good%20first%20issue-welcome-blueviolet)
 
