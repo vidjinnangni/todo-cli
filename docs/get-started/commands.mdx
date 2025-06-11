@@ -32,9 +32,10 @@ todo add "Write blog post"
 
 - `--priority [low|medium|high]` – Set the task’s priority
 - `--due YYYY-MM-DD` – Add a due date
+- `--tags tag1,tag2` – Assign one or more tags to the task
 
 ```bash bash
-todo add "Finish report" --priority high --due 2025-06-10
+todo add "Finish report" --priority high --due 2025-06-10 --tags work,urgent
 ```
 
 ### `list` command
@@ -47,7 +48,13 @@ todo list
 
 - `--verbose` – Show creation and due dates
 - `--priority [low|medium|high]` – Filter by priority
+- `--tags tag1,tag2` – Filter tasks that match at least one of the provided tags
 
+```bash Bash
+todo list --priority high
+todo list --tags dev,urgent
+todo list --verbose
+```
 
 ### `complete` command
 

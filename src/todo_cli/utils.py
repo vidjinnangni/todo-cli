@@ -33,14 +33,14 @@ def print_message(kind: str, message: str) -> None:
 def format_task_table(tasks: List[TaskDict], verbose: bool = False) -> str:
     """
     Return a formatted string displaying tasks in a table layout.
-    Columns: ID | Status | Priority | Task [| Created]
+    Columns: ID | Status | Priority | Task | Due [| Created | Tags]
     """
     if not tasks:
         return "⚠️  No tasks to display."
 
     headers = ["ID", "Status", "Priority", "Task", "Due"]
     if verbose:
-        headers.append("Created")
+        headers.extend(["Created", "Tags"])
 
     rows: List[List[str]] = []
     for task in tasks:
@@ -54,6 +54,9 @@ def format_task_table(tasks: List[TaskDict], verbose: bool = False) -> str:
         ]
         if verbose:
             row.append(task.get("created", ""))  # fallback for retrocompatibility
+            tags = task.get("tags")
+            tags_str = ", ".join(tags) if tags else ""
+            row.append(tags_str)
         rows.append(row)
 
     # Determine column widths

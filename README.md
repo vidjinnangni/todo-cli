@@ -5,7 +5,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Learning Project](https://img.shields.io/badge/type-Learning_Project-purple)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-![Version](https://img.shields.io/badge/version-1.0.2-orange)
+![Version](https://img.shields.io/badge/version-1.1.0-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Good First Issue](https://img.shields.io/badge/good%20first%20issue-welcome-blueviolet)
 
@@ -43,6 +43,8 @@ A command-line Todo application built in Python, designed as a progressive learn
 - ✅ Enhanced list display with `--verbose`
 - ✅ Display of due date by default
 - ✅ Support for multi-ID delete
+- ✅ Tagging system for tasks (e.g. --tags work,urgent)
+- ✅ Filter tasks by tag(s) with --tags option
 
 ---
 
@@ -61,8 +63,10 @@ Once installed, run the CLI from anywhere in your terminal:
 ```bash
 todo --help
 todo add "Submit report" --priority high --due 2025-06-10
+todo add "Refactor API" --priority high --due 2025-06-30 --tags dev,urgent
 todo list
 todo list --verbose
+todo list --tags dev
 ```
 
 To upgrade later:
@@ -130,7 +134,8 @@ source .venv/bin/activate
     "done": false,
     "priority": "medium",
     "created": "2025-06-01T12:00:00+00:00",
-    "due": "2025-06-15"
+    "due": "2025-06-15",
+    "tags": ["shopping", "errands"]
   }
 ]
 ```
@@ -141,8 +146,10 @@ Run the CLI tool without activating the environment:
 
 ```bash
 uv run todo add "Submit report" --priority high --due 2025-06-10
+uv run todo add "Refactor API" --priority high --due 2025-06-30 --tags dev,urgent
 uv run todo list
 uv run todo list --verbose
+uv run todo list --tags dev
 ```
 
 > command `todo list`
@@ -158,6 +165,8 @@ Or activate the environment and use `todo` directly:
 ```bash
 source .venv/bin/activate
 todo add "Submit report" --priority high --due 2025-06-10
+todo add "Refactor API" --priority high --due 2025-06-30 --tags dev,urgent
+todo list --tags dev
 ```
 
 📚 Learn how the CLI is implemented internally → [CLI Architecture](docs/cli_explanation.md)

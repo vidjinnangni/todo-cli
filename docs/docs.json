@@ -18,6 +18,7 @@
     "links": [
       {
         "label": "GitHub",
+        "icon": "github",
         "href": "https://github.com/vidjinnangni/todo-cli-x"
       }
     ],
@@ -30,7 +31,9 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Docs",
+        "tab": "Documentation",
+        "icon": "book",
+
         "groups": [
           {
             "group": "Get Started",
@@ -61,9 +64,9 @@
     "global": {
       "anchors": [
         {
-          "anchor": "GitHub",
-          "href": "https://github.com/vidjinnangni/todo-cli-x",
-          "icon": "github"
+          "anchor": "Roadmap",
+          "href": "https://vidjinnangni.notion.site/Todo-CLI-Roadmap-207873f9fe5a80f38256eb0b0798e30a",
+          "icon": "flag"
         }
       ]
     }

@@ -40,13 +40,25 @@ def test_add_task_creates_new_task():
         "done": False, # New task should not be done
         "priority": "medium", # Default priority
         "created": task["created"],  # Ensure created date is set
-        "due": ""  # Default due date is empty
+        "due": "",  # Default due date is empty
+        "tags": []  # Default tags are empty
     }
 
 # This test checks if a new task can be added with a specific priority.
 def test_add_task_with_custom_priority():
     task: TaskDict = core.add_task("Urgent fix", priority="high")
     assert task["priority"] == "high"
+
+# This test checks if a new task can be added with tags.
+def test_add_task_with_tags():
+    task: TaskDict = core.add_task("Tag test", tags=["work", "urgent"])
+    assert task["tags"] == ["work", "urgent"]
+
+# This test checks if a new task can be added without tags.
+def test_add_task_without_tags():
+    task: TaskDict = core.add_task("No tags")
+    assert "tags" in task
+    assert task["tags"] == []
 
 # -------------------------------
 # 📄 Test: list_tasks()
@@ -103,6 +115,7 @@ def test_delete_task_fails_for_nonexistent_id():
 # -------------------------------
 # 🧪 Sorting & Filtering (core logic-based)
 # -------------------------------
+# This section tests sorting and filtering tasks based on priority and tags.
 def test_tasks_sorted_by_priority():
     core.add_task("Low priority", priority="low")
     core.add_task("High priority", priority="high")
@@ -111,6 +124,7 @@ def test_tasks_sorted_by_priority():
     priorities = [task["priority"] for task in tasks]
     assert priorities == ["high", "medium", "low"]
 
+# This test checks if tasks can be filtered by priority.
 def test_tasks_filtered_by_priority():
     core.add_task("Important", priority="high")
     core.add_task("Trivial", priority="low")
@@ -118,3 +132,15 @@ def test_tasks_filtered_by_priority():
     assert len(filtered) == 1
     assert filtered[0]["text"] == "Important"
     assert filtered[0]["priority"] == "high"
+
+# This test checks if tasks can be filtered by tags.
+def test_filter_tasks_by_tags():
+    core.add_task("Task A", tags=["dev"])
+    core.add_task("Task B", tags=["design"])
+    core.add_task("Task C", tags=["dev", "design"])
+    tasks = core.list_tasks()
+
+    filtered = [t for t in tasks if set(t.get("tags") or []) & {"dev"}]
+    assert len(filtered) == 2
+    assert any(t["text"] == "Task A" for t in filtered)
+    assert any(t["text"] == "Task C" for t in filtered)

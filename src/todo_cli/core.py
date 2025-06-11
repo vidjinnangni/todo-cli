@@ -23,6 +23,7 @@ class TaskDict(TypedDict):
     priority: Priority
     created: str
     due: Optional[str]
+    tags: Optional[list[str]]
 
 Task = TaskDict
 
@@ -71,7 +72,7 @@ def save_tasks(tasks: List[Task]) -> None:
 # ➕ Task creation
 # ---------------------------
 
-def add_task(text: str, priority: Priority = "medium", due: Optional[str] = None) -> Task:
+def add_task(text: str, priority: Priority = "medium", due: Optional[str] = None, tags: Optional[list[str]] = None) -> Task:
     """
     Create a new task and save it.
     - Automatically assigns an ID based on the last task.
@@ -79,6 +80,9 @@ def add_task(text: str, priority: Priority = "medium", due: Optional[str] = None
     """
     if priority not in VALID_PRIORITIES:
         raise ValueError(f"Invalid priority: {priority}. Must be one of {VALID_PRIORITIES}.")
+    
+    if tags is None:
+        tags = []
         
     # Load existing tasks to determine the next ID
     tasks = load_tasks()
@@ -93,6 +97,7 @@ def add_task(text: str, priority: Priority = "medium", due: Optional[str] = None
         "priority": priority,
         "created": datetime.now(timezone.utc).isoformat(timespec="seconds"), # Store creation time in ISO format
         "due": due or "",
+        "tags": tags,
     }
 
     tasks.append(task)

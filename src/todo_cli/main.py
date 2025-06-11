@@ -27,7 +27,7 @@ def main():
     subparsers = parser.add_subparsers(dest="command", title="Available commands", metavar="")
 
     # === add command ===
-    add_parser = subparsers.add_parser("add", help="Add a new task", description="Add a new task to your todo list with optional priority.")
+    add_parser = subparsers.add_parser("add", help="Add a new task", description="Add a new task to your todo list with optional priority, due date, and tags.")
     add_parser.add_argument("text", help="The content of the task to add")
     add_parser.add_argument(
         "--priority",
@@ -39,6 +39,11 @@ def main():
         "--due",
         type=str,
         help="Set a due date for the task (format: YYYY-MM-DD) - optional"
+    )
+    add_parser.add_argument(
+        "--tags",
+        type=str,
+        help="Set tags for the task, comma-separated (e.g., work,urgent) - optional"
     )
 
     # === list command ===
@@ -62,6 +67,11 @@ def main():
         "--sort",
         choices=["priority"],
         help="Sort tasks by field (currently only 'priority' is supported)"
+    )
+    list_parser.add_argument(
+        "--tags",
+        type=str,
+        help="Filter tasks by tags, comma-separated (e.g., work,urgent) - optional"
     )
     list_parser.add_argument(
         "--verbose",
@@ -95,11 +105,11 @@ def main():
 This is a simple and minimalist command-line todo manager.
 
 📦 Available commands:
-• todo add "Task content" [--priority low|medium|high] [--due YYYY-MM-DD]    ➜ Add a new task with optional priority (default: medium) and due date
-• todo list [--done | --undone] [--priority ...] [--sort priority]           ➜ List tasks with optional filters and sorting
-• todo complete <id>                                                         ➜ Mark a task as completed by ID
-• todo delete <id>                                                           ➜ Delete a task by ID
-• todo clear                                                                 ➜ Delete all tasks
+• todo add "Task content" [--priority low|medium|high] [--due YYYY-MM-DD] [--tags tag1,tag2]   ➜ Add a new task with optional priority (default: medium) and due date
+• todo list [--done | --undone] [--priority ...] [--tags work,urgent] [--sort priority]                 ➜ List tasks with optional filters and sorting
+• todo complete <id>                                                                           ➜ Mark a task as completed by ID
+• todo delete <id>                                                                             ➜ Delete a task by ID
+• todo clear                                                                                   ➜ Delete all tasks
 
 ℹ️  Run `todo --help` for more details.
         """)
@@ -107,13 +117,20 @@ This is a simple and minimalist command-line todo manager.
 
     # Add command handling
     if args.command == "add":
-        task = core.add_task(args.text, priority=args.priority, due=args.due)
+        tags = [t.strip() for t in args.tags.split(",")] if args.tags else []
+        task = core.add_task(args.text, priority=args.priority, due=args.due, tags=tags)
         if task:
             meta_parts = [f"priority: {task['priority']}"]
-            if task["due"]:
+            if task.get("due"):
                 meta_parts.append(f"due: {task['due']}")
+            if task.get("created"):
+                meta_parts.append(f"created: {task['created']}")
+            if task.get("tags"):
+                tags_str = ", ".join(tags)
+                meta_parts.append(f"tags: {tags_str}")
+
             meta_str = " ".join(f"({part})" for part in meta_parts)
-            
+
             print_message("success", f'Task added: [{task["id"]}] {task["text"]} {meta_str}')
             print()
             print_message("info", "You can now list your tasks with `todo list`.")
@@ -143,6 +160,17 @@ This is a simple and minimalist command-line todo manager.
         if args.sort == "priority":
             priority_order = {"high": 0, "medium": 1, "low": 2}
             tasks.sort(key=lambda t: priority_order.get(t["priority"], 1))
+
+        # Filter by tags if specified
+        if args.tags:
+            requested_tags = {tag.strip().lower() for tag in args.tags.split(",")}
+            filtered_tasks: list[core.Task] = []
+            for t in tasks:
+                tags = t.get("tags") or []
+                task_tags = {tag.lower() for tag in tags}
+                if requested_tags & task_tags:
+                    filtered_tasks.append(t)
+            tasks = filtered_tasks
 
         # If no tasks match the filters, show a message
         if not tasks:
