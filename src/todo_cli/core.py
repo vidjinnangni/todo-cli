@@ -1,7 +1,7 @@
 # ----------------------------------------
 # 📝 Todo CLI X Core Module
 # This module contains the core logic for the Todo CLI application.
-# It handles task management including creation, listing, updating, and deletion.
+# It handles task management (creation, listing, updating, deletion...).
 # It uses a JSON file to persist tasks across sessions.
 # ----------------------------------------
 
@@ -154,6 +154,43 @@ def delete_task(task_id: int) -> Task | None:
     for task in tasks:
         if task["id"] == task_id:
             tasks.remove(task)
+            save_tasks(tasks)
+            return task
+    return None
+
+# ---------------------------
+# ✏️ Edit a task
+# ---------------------------
+def edit_task(
+        task_id: int,
+        text: str | None = None,
+        priority: Priority | None = None,
+        due: str | None = None,
+        tags: list[str] | None = None,
+) -> Optional[TaskDict]:
+    """
+    Edit an existing task by its ID.
+    You can update its text, priority, due date, or tags.
+    Returns the updated task, or None if the ID is not found.
+    """
+    tasks = list_tasks()
+    for task in tasks:
+        if task["id"] == task_id:
+            if text is not None:
+                task["text"] = text
+            if priority is not None:
+                if priority not in VALID_PRIORITIES:
+                    raise ValueError(f"Invalid priority: {priority}. Must be one of {VALID_PRIORITIES}.")
+                task["priority"] = priority
+            if due is not None:
+                try:
+                    datetime.strptime(due, "%Y-%m-%d")
+                    task["due"] = due
+                except ValueError:
+                    raise ValueError("Due date must be in YYYY-MM-DD format.")
+            if tags is not None:
+                task["tags"] = [tag.strip() for tag in tags if tag.strip()]
+            
             save_tasks(tasks)
             return task
     return None

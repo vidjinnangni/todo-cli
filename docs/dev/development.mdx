@@ -18,6 +18,8 @@ todo-cli/
 │       ├── core.py      # Business logic
 │       └── main.py      # CLI entry point
 ├── tests/               # Unit tests
+│   ├── test_core.py     # Tests for core logic (add, list, complete, etc.)
+│   └── test_utils.py    # Tests for utility functions (formatting, output, etc.)
 ├── pyproject.toml       # Project config
 ├── uv.lock              # Dependency lock
 ├── README.md            # Main doc
@@ -55,7 +57,8 @@ source .venv/bin/activate  # macOS/Linux
     "done": false,
     "priority": "medium",
     "created": "2025-06-01T12:00:00+00:00",
-    "due": "2025-06-15"
+    "due": "2025-06-15",
+    "tags": ["shopping", "errands"]
   }
 ]
 ```
@@ -65,9 +68,11 @@ source .venv/bin/activate  # macOS/Linux
 Use `uv run` to run commands without activating the virtual environment:
 
 ```bash Bash
-uv run todo add "Submit report" --priority high --due 2025-06-10
+uv run todo add "Refactor API" --priority high --due 2025-06-30 --tags dev,urgent
 uv run todo list
 uv run todo list --verbose
+uv run todo list --tags dev
+uv run todo edit 1 --text "Refactor user API" --priority medium --tags dev
 ```
 
 Or activate the environment and run directly:
@@ -75,6 +80,9 @@ Or activate the environment and run directly:
 ```bash Bash
 source .venv/bin/activate
 todo add "Submit report" --priority high --due 2025-06-10
+todo add "Refactor API" --priority high --due 2025-06-30 --tags dev,urgent
+todo list --tags dev
+todo edit 1 --text "Refactor user API" --priority medium --tags dev
 ```
 
 ## Running Tests

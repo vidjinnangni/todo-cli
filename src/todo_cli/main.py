@@ -17,12 +17,12 @@ from . import __version__
 # ----------------------------------------
 def main():
     parser = argparse.ArgumentParser(
-        description="📝 Todo CLI X – A simple and minimalist command-line todo manager.",
-        epilog="🔎 Use 'todo <command> --help' to get more details about a specific command."
+        description="Todo CLI X – A simple and minimalist command-line todo manager.",
+        epilog="Use `todo <command> --help` to get more details about a specific command."
     )
     parser.add_argument(
     "--version", "-v", action="version", version=f"todo-cli-x v{__version__}"
-)
+    )
 
     subparsers = parser.add_subparsers(dest="command", title="Available commands", metavar="")
 
@@ -91,6 +91,14 @@ def main():
     delete_parser = subparsers.add_parser("delete", help="Delete one or more tasks by their ID")
     delete_parser.add_argument("ids", type=int, nargs="+", help="ID(s) of the task(s) to delete")
 
+    # === edit command ===
+    edit_parser = subparsers.add_parser("edit", help="Edit an existing task", description="Edit a task's text, priority, due date or tags.")
+    edit_parser.add_argument("id", type=int, help="ID of the task to edit")
+    edit_parser.add_argument("--text", type=str, help="New task text")
+    edit_parser.add_argument("--priority", choices=["low", "medium", "high"], help="New task priority")
+    edit_parser.add_argument("--due", type=str, help="New due date (format: YYYY-MM-DD)")
+    edit_parser.add_argument("--tags", type=str, help="New tags, comma-separated (e.g. work,urgent)")
+
     args = parser.parse_args()
 
 # ----------------------------------------
@@ -105,11 +113,12 @@ def main():
 This is a simple and minimalist command-line todo manager.
 
 📦 Available commands:
-• todo add "Task content" [--priority low|medium|high] [--due YYYY-MM-DD] [--tags tag1,tag2]   ➜ Add a new task with optional priority (default: medium) and due date
-• todo list [--done | --undone] [--priority ...] [--tags work,urgent] [--sort priority]                 ➜ List tasks with optional filters and sorting
-• todo complete <id>                                                                           ➜ Mark a task as completed by ID
-• todo delete <id>                                                                             ➜ Delete a task by ID
-• todo clear                                                                                   ➜ Delete all tasks
+• todo add "Task content" [--priority low|medium|high] [--due YYYY-MM-DD] [--tags tag1,tag2]      ➜ Add a new task with optional priority (default: medium) and due date
+• todo list [--done | --undone] [--priority ...] [--tags work,urgent] [--sort priority]           ➜ List tasks with optional filters and sorting
+• todo complete <id>                                                                              ➜ Mark a task as completed by ID
+• todo delete <id>                                                                                ➜ Delete a task by ID
+• todo edit <id> [--text ...] [--priority low|medium|high] [--due YYYY-MM-DD] [--tags tag1,tag2]  ➜ Edit an existing task
+• todo clear                                                                                      ➜ Delete all tasks
 
 ℹ️  Run `todo --help` for more details.
         """)
@@ -200,6 +209,28 @@ This is a simple and minimalist command-line todo manager.
                 print_message("delete", f'Task [{task["id"]}] "{task["text"]}" deleted.')
             else:
                 print_message("error", f"Sorry, task [{task_id}] not found.")
+
+    # Edit command handling
+    elif args.command == "edit":
+        # Parse tags cleanly if provided
+        tags = [t.strip() for t in args.tags.split(",") if t.strip()] if args.tags else None
+
+        try:
+            updated = core.edit_task(
+                task_id=args.id,
+                text=args.text,
+                priority=args.priority,
+                due=args.due,
+                tags=tags
+            )
+        except ValueError as e:
+            print_message("error", str(e))
+            return
+
+        if updated:
+            print_message("success", f'Task [{updated["id"]}] updated: "{updated["text"]}"')
+        else:
+            print_message("error", f"Task [{args.id}] not found.")
 
     # If command is not recognized
     else:

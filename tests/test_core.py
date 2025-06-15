@@ -8,7 +8,7 @@
 import os
 import pytest
 from todo_cli import core
-from typing import List
+from typing import List, cast, Any
 from todo_cli.core import TaskDict
 
 # -------------------------------
@@ -144,3 +144,29 @@ def test_filter_tasks_by_tags():
     assert len(filtered) == 2
     assert any(t["text"] == "Task A" for t in filtered)
     assert any(t["text"] == "Task C" for t in filtered)
+
+# -------------------------------
+# ✏️ Test: edit_task()
+# -------------------------------
+def test_edit_task_text_and_priority():
+    task = core.add_task("Initial task", priority="low")
+    updated = core.edit_task(task_id=task["id"], text="Updated task", priority="high")
+    assert updated is not None
+    assert updated["text"] == "Updated task"
+    assert updated["priority"] == "high"
+
+def test_edit_task_due_and_tags():
+    task = core.add_task("Task with no due", tags=["dev"])
+    updated = core.edit_task(task_id=task["id"], due="2025-07-01", tags=["urgent", "backend"])
+    assert updated is not None
+    assert updated["due"] == "2025-07-01"
+    assert updated["tags"] == ["urgent", "backend"]
+
+def test_edit_task_invalid_priority():
+    task = core.add_task("Invalid priority test")
+    with pytest.raises(ValueError):
+        core.edit_task(task_id=task["id"], priority=cast(Any, "urgent"))
+
+def test_edit_task_nonexistent_id_returns_none():
+    result = core.edit_task(task_id=999, text="Does not exist")
+    assert result is None
