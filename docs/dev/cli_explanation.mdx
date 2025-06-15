@@ -37,6 +37,7 @@ This page defines the command-line interface for the Todo CLI X app using Python
 | `list`    | `todo list [--done] [--undone] [--priority LEVEL] [--sort priority] [--verbose]` | List tasks with filters, sort or full details |
 | `complete`| `todo complete <id>`                                                  | Mark a task as completed              |
 | `delete`  | `todo delete <id> [id ...]`                                           | Delete one or more tasks by ID        |
+| `edit`     | `todo edit <id> [--text TEXT] [--priority LEVEL] [--due YYYY-MM-DD] [--tags tag1,tag2]` | Edit a task’s fields (text, priority, due date, or tags) |
 | `clear`   | `todo clear`                                                          | Delete all tasks                      |
 
 <Tip>You can also run `help` for each subcommand</Tip>
@@ -62,6 +63,7 @@ todo list --done
 todo complete 1
 todo delete 1
 todo delete 2 3 4
+todo edit 3 --text "Update report" --priority low --tags admin,review
 todo clear
 ```
 
@@ -75,6 +77,7 @@ todo clear
 | `--undone`  | Show only uncompleted tasks                |
 | `--sort`    | Sort tasks (currently only by priority)    |
 | `--verbose` | Show detailed task info including `created`|
+| `--tags`    | Assign or filter tasks by comma-separated tags       |
 
 ## Testing Your CLI
 

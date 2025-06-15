@@ -19,7 +19,8 @@ All core operations like `adding`, `listing`, `marking`, and `clearing` tasks ar
     "done": false,
     "priority": "medium",
     "created": "2025-06-01T10:00:00+00:00",
-    "due": "2025-06-10"
+    "due": "2025-06-10",
+    "tags": ["shopping", "errands"]
   }
 ]
 ```
@@ -36,6 +37,7 @@ class TaskDict(TypedDict):
   priority: Literal["low", "medium", "high"]
   created: str
   due: Optional[str]
+  tags: Optional[list[str]]
 ```
 
 - The default `priority` for new tasks is "medium".
@@ -52,6 +54,7 @@ class TaskDict(TypedDict):
 | `list_tasks()`        | Return all existing tasks                        |
 | `complete_task(id)`   | Mark a task as completed by ID                   |
 | `delete_task(id)`     | Delete a task by ID                              |
+| `edit_task(...)`       | Edit an existing task’s text, priority, due date or tags |
 | `clear_tasks()`       | Remove all tasks from the list                   |
 
 ## File organization
@@ -64,6 +67,7 @@ To make the code more maintainable, functions in core.py are grouped by responsi
 | ➕ Task creation         | Add new tasks with automatic ID and status       | `add_task`                   |
 | 📄 Task reading          | Read and return task data                        | `list_tasks`                 |
 | ✅ Task updates          | Modify the status of tasks                       | `complete_task`              |
+| ✅ Task edit          | Modify the status or content of tasks                | `complete_task`, `edit_task` |
 | ❌ Task deletion         | Remove tasks individually or all at once         | `delete_task`, `clear_tasks` |
 
 ---

@@ -73,6 +73,23 @@ Delete one or more tasks by their ID.
 todo delete 2 5 7
 ```
 
+### `edit` command
+
+Edit an existing task by its ID. You can change its text, priority, due date, or tags.
+
+```bash Bash
+todo edit 3 --text "Refactor authentication flow" --priority high --due 2025-06-20 --tags backend,urgent
+```
+
+**Options:**
+
+- `--text` – Update the task’s description
+- `--priority [low|medium|high]` – Change the task’s priority
+- `--due YYYY-MM-DD` – Set a new due date
+- `--tags tag1,tag2` – Replace tags with a new set
+
+Any field you omit will be left unchanged.
+
 ### `clear` command
 
 <Warning>Delete all tasks (irreversible)</Warning>

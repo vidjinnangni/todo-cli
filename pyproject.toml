@@ -1,6 +1,6 @@
 [project]
 name = "todo-cli-x"
-version = "1.1.1"
+version = "1.2.0"
 description = "A simple command-line todo application"
 authors = [{ name = "vidjinnangni", email = "gregory.thoto@gmail.com" }]
 readme = "README.md"
@@ -15,7 +15,8 @@ Roadmap = "https://vidjinnangni.notion.site/Todo-CLI-Roadmap-207873f9fe5a80f3825
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.3.5"
+    "pytest>=8.3.5",
+    "ruff>=0.11.13",
 ]
 
 [project.scripts]

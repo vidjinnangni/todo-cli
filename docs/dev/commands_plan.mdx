@@ -22,6 +22,7 @@ This table summarizes the available commands for the Todo CLI X application.
 | `list --verbose`     | `todo list --verbose`                                                  | Show detailed task info (includes creation date)           |
 | `complete`           | `todo complete <id>`                                                   | Mark a task as completed                                   |
 | `delete`             | `todo delete <id1> <id2> ...`                                          | Delete one or more tasks by ID                             |
+| `edit`               | `todo edit <id> [--text TEXT] [--priority low\|medium\|high] [--due YYYY-MM-DD] [--tags tag1,tag2]` | Edit an existing task (text, priority, due date, or tags) |
 | `clear`              | `todo clear`                                                           | Delete all tasks                                           |
 
 <Note>
@@ -48,11 +49,14 @@ todo list --sort priority
 todo complete 2
 todo delete 1
 todo delete 2 3
+todo edit 3 --text "Update project doc" --priority low --tags docs,review
 todo clear
 ```
 
 ## Notes
 
 - All commands are subcommands defined with argparse in main.py
+- `--tags` can be used in `add`, `edit`, and `list` commands.
+- The `edit` command lets you update one or more fields of an existing task.
 - Each command maps to a function in core.py
 - The CLI is easily extensible: just add a parser and a corresponding function call.

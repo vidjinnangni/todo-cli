@@ -5,7 +5,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
 ![Learning Project](https://img.shields.io/badge/type-Learning_Project-purple)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-![Version](https://img.shields.io/badge/version-1.1.0-orange)
+![Version](https://img.shields.io/badge/version-1.2.0-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Good First Issue](https://img.shields.io/badge/good%20first%20issue-welcome-blueviolet)
 
@@ -15,7 +15,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 
 > 👉🏾 See the project [**Roadmap**](https://vidjinnangni.notion.site/Todo-CLI-Roadmap-207873f9fe5a80f38256eb0b0798e30a?source=copy_link)
 
-## 📚 Learning Objectives
+## Learning Objectives
 
 - Learn Python through hands-on practice
 - Apply a clear and professional project methodology
@@ -30,7 +30,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 
 ---
 
-## 🚀 Project Status
+## Project Status
 
 - ✅ Git repository initialized
 - ✅ Python environment managed with [UV](https://github.com/astral-sh/uv)
@@ -45,6 +45,7 @@ A command-line Todo application built in Python, designed as a progressive learn
 - ✅ Support for multi-ID delete
 - ✅ Tagging system for tasks (e.g. --tags work,urgent)
 - ✅ Filter tasks by tag(s) with --tags option
+- ✅ Edit existing tasks (text, priority, due date, tags)
 
 ---
 
@@ -67,6 +68,7 @@ todo add "Refactor API" --priority high --due 2025-06-30 --tags dev,urgent
 todo list
 todo list --verbose
 todo list --tags dev
+todo edit 1 --text "Finalize report" --priority medium --due 2025-07-01 --tags work,report
 ```
 
 To upgrade later:
@@ -150,6 +152,7 @@ uv run todo add "Refactor API" --priority high --due 2025-06-30 --tags dev,urgen
 uv run todo list
 uv run todo list --verbose
 uv run todo list --tags dev
+uv run todo edit 3 --text "Finalize report" --priority medium --due 2025-07-01 --tags work,report
 ```
 
 > command `todo list`
